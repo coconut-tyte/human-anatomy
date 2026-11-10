@@ -53,7 +53,14 @@ a{color:var(--ac)}
 <a href="https://anatomytool.org/node/63858" target="_blank" rel="noopener">Open 3D Model</a>.</p>
 </div>
 </main>
+<script>
+addEventListener('error',function(e){var d=document.getElementById('err');if(!d){d=document.createElement('pre');d.id='err';d.style.cssText='color:#b91c1c;padding:12px 16px;white-space:pre-wrap;max-width:1150px;margin:auto';document.body.insertBefore(d,document.body.firstChild)}
+d.textContent+='Lỗi: '+(e.message||('không tải được '+(e.target&&e.target.src)))+(e.lineno?' (dòng '+e.lineno+')':'')+'\n'},true);
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>window.THREE||document.write('<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"><\/script>')</script>
+<script>if(!window.THREE)document.body.insertAdjacentHTML('afterbegin','<p style="color:#b91c1c;padding:12px 16px">Không tải được thư viện three.js (mạng hoặc trình chặn quảng cáo đang chặn cdnjs.cloudflare.com và cdn.jsdelivr.net).</p>');
+else{try{var c=document.createElement('canvas');if(!(c.getContext('webgl')||c.getContext('experimental-webgl')))document.body.insertAdjacentHTML('afterbegin','<p style="color:#b91c1c;padding:12px 16px">Trình duyệt đang tắt WebGL nên không hiển thị được mô hình 3D. Hãy bật tăng tốc phần cứng (hardware acceleration) trong cài đặt trình duyệt.</p>')}catch(x){}}</script>
 <script>
 const RG={so:'Sọ và mặt',cs:'Cột sống',lt:'Lồng ngực',dv:'Đai vai',ct:'Chi trên',kc:'Khung chậu',cd:'Chi dưới'};
 // khóa|tên|Latin|vùng|chức năng
