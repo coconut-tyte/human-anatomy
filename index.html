@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Bộ xương và hệ cơ người 3D – bấm vào từng phần</title>
+<title>Bộ xương, hệ cơ và hệ thần kinh người 3D</title>
 <style>
 :root{--bg:#f6f4ef;--card:#fff;--tx:#23201b;--mu:#6b655a;--bd:#e0dbcf;--ac:#c2410c;--acbg:#ffedd5;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17150f;--card:#221f17;--tx:#f1ede2;--mu:#a39c8a;--bd:#3a3528;--ac:#fb923c;--acbg:#3b2410}}
@@ -30,16 +30,17 @@ h2{margin:0;font-size:1.25rem}h3{margin:14px 0 4px;font-size:.8rem;color:var(--m
 #res{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .hint{color:var(--mu);font-size:.85rem;margin:10px 0 0}
 a{color:var(--ac)}
-#layers{position:absolute;left:8px;top:8px;display:flex;gap:6px;z-index:2}</style>
+#layers,#views{position:absolute;left:8px;top:8px;display:flex;gap:6px;z-index:2}#views{top:46px}</style>
 </head>
 <body>
 <header>
-<h1>🦴 Bộ xương và hệ cơ người 3D</h1>
-<p>Kéo để xoay, cuộn hoặc bấm +/− để phóng to. Chọn lớp Xương / Cơ / Cả hai ở góc trái mô hình, rồi bấm vào từng phần để xem thông tin.</p>
+<h1>🦴 Xương, cơ và thần kinh người 3D</h1>
+<p>Kéo để xoay, cuộn hoặc bấm +/− để phóng to. Bật hoặc tắt các lớp Xương / Cơ / Thần kinh ở góc trái mô hình, rồi bấm vào từng phần để xem thông tin. Mô hình chỉ xoay khi bạn kéo thả. Khi đã phóng to, kéo lên xuống để xem phần trên và dưới; giữ Shift hoặc dùng chuột phải để kéo theo mọi hướng; trên điện thoại dùng hai ngón để phóng to và di chuyển. Nút Trước / Sau / Trái / Phải để đổi nhanh hướng nhìn.</p>
 </header>
 <main>
 <div class="card" id="view">
-<div id="layers"><button data-m="b" class="on">Xương</button><button data-m="m">Cơ</button><button data-m="bm">Cả hai</button></div>
+<div id="layers"><button data-m="b" class="on">Xương</button><button data-m="m">Cơ</button><button data-m="n">Thần kinh</button></div>
+<div id="views"><button data-v="0">Trước</button><button data-v="3.1416">Sau</button><button data-v="-1.5708">Trái</button><button data-v="1.5708">Phải</button></div>
 <div id="tools"><button id="zi" title="Phóng to">+</button><button id="zo" title="Thu nhỏ">−</button><button id="rs" title="Đặt lại">⟲</button></div>
 </div>
 <div class="card">
@@ -48,8 +49,8 @@ a{color:var(--ac)}
 <div id="info"></div>
 <h3>Hiển thị theo vùng xương</h3>
 <div class="bar" id="regs"></div>
-<div class="bar"><button id="dim" class="on">Làm mờ xương khác khi chọn</button><button id="spin" class="on">Tự xoay</button></div>
-<p class="hint">Mô hình xương và cơ dựng bằng hình khối nên chỉ gần đúng về hình dạng. Phần cơ gồm 23 nhóm cơ nông chính, chưa có các cơ sâu. Ở chế độ “Cả hai”, cơ nằm phía trước sẽ che xương khi bấm, hãy chuyển sang lớp Xương để chọn xương. Chưa có 14 xương nhỏ nằm sâu: xương sàng, lệ, khẩu cái, cuốn mũi dưới, lá mía và 6 xương nhĩ (còn lại 192/206 xương). Để xem hình dạng thật, tham khảo
+<div class="bar"><button id="dim" class="on">Làm mờ xương khác khi chọn</button><button id="spin">Tự xoay</button></div>
+<p class="hint">Mô hình xương và cơ dựng bằng hình khối nên chỉ gần đúng về hình dạng. Phần cơ gồm 23 nhóm cơ nông chính, chưa có các cơ sâu. Có thể bật nhiều lớp cùng lúc; lớp nằm phía trước sẽ che lớp phía sau khi bấm, nên muốn chọn xương hoặc dây thần kinh nằm sâu thì tắt bớt lớp cơ. Não và tủy sống nằm trong hộp sọ và ống sống nên chỉ thấy khi tắt lớp Xương. Phần thần kinh gồm 5 cấu trúc thần kinh trung ương và 13 dây thần kinh ngoại biên chính, chưa có dây thần kinh sọ và hệ thần kinh tự chủ. Chưa có 14 xương nhỏ nằm sâu: xương sàng, lệ, khẩu cái, cuốn mũi dưới, lá mía và 6 xương nhĩ (còn lại 192/206 xương). Để xem hình dạng thật, tham khảo
 <a href="https://learnanatomy3d.com/" target="_blank" rel="noopener">LearnAnatomy3D</a> hoặc
 <a href="https://anatomytool.org/node/63858" target="_blank" rel="noopener">Open 3D Model</a>.</p>
 </div>
@@ -144,6 +145,27 @@ m_add|Nhóm cơ khép đùi|Musculi adductores|ml|Xương mu và ngành xương 
 m_ham|Nhóm cơ gân kheo|Musculi ischiocrurales (hamstrings)|ml|Củ ngồi (đầu ngắn cơ nhị đầu đùi bám đường ráp)|Chỏm xương mác (cơ nhị đầu đùi); mặt trong xương chày (cơ bán gân, cơ bán màng)|Duỗi khớp háng, gập gối|Thần kinh tọa
 m_gas|Cơ bụng chân|Musculus gastrocnemius|ml|Hai lồi cầu xương đùi (mặt sau)|Xương gót, qua gân gót (Achilles)|Gập gan chân (nhón gót) và gập gối|Thần kinh chày (S1–S2)
 m_ta|Cơ chày trước|Musculus tibialis anterior|ml|Lồi cầu ngoài và mặt ngoài xương chày|Xương chêm trong và nền xương đốt bàn I|Gập mu bàn chân và nâng bờ trong bàn chân; liệt gây rơi bàn chân|Thần kinh mác sâu (L4–L5)`.trim().split('\n').forEach(l=>{const p=l.split('|');MU[p[0]]={n:p[1],l:p[2],r:p[3],o:p[4],i:p[5],f:p[6],v:p[7]}});
+const RGN={tw:'Thần kinh trung ương',nb:'Thần kinh ngoại biên'};
+// khóa|tên|Latin|loại|vị trí / nguồn gốc|chức năng / vận động|cảm giác|lưu ý lâm sàng
+const ND={};`
+n_cb|Đại não|Cerebrum|tw|Trong hộp sọ, chiếm phần lớn thể tích não; gồm hai bán cầu, mỗi bán cầu có 4 thùy: trán, đỉnh, thái dương, chẩm|Xử lý cảm giác, điều khiển vận động có ý thức, ngôn ngữ, trí nhớ, tư duy và cảm xúc||
+n_cbl|Tiểu não|Cerebellum|tw|Dưới thùy chẩm, phía sau thân não|Phối hợp vận động, giữ thăng bằng và trương lực cơ||Tổn thương gây mất điều hòa vận động, đi loạng choạng
+n_bs|Thân não|Truncus encephali|tw|Gồm não giữa, cầu não và hành não, nối đại não với tủy sống|Chứa trung khu hô hấp, tim mạch, ý thức và nhân của hầu hết các dây thần kinh sọ; là đường dẫn truyền giữa não và tủy sống||
+n_sc|Tủy sống|Medulla spinalis|tw|Trong ống sống, từ lỗ chẩm đến khoảng L1–L2 (chóp tủy)|Dẫn truyền cảm giác lên não và lệnh vận động xuống ngoại vi; trung tâm của các phản xạ tủy; phát ra 31 đôi dây thần kinh tủy sống||Tổn thương gây liệt và mất cảm giác dưới mức tổn thương
+n_ce|Đuôi ngựa|Cauda equina|tw|Bó rễ thần kinh thắt lưng – cùng chạy trong ống sống, dưới chóp tủy|Chi phối vận động và cảm giác chi dưới, bàng quang và ruột||Hội chứng đuôi ngựa là cấp cứu: đau lưng, tê vùng đáy chậu, rối loạn tiểu tiện
+n_bp|Đám rối cánh tay|Plexus brachialis|nb|Nhánh trước các dây thần kinh C5–T1, đi từ cổ xuống nách|Phân nhánh thành các dây chi phối chi trên: cơ bì, nách, quay, giữa, trụ|Da chi trên|Kéo giật cánh tay mạnh (ví dụ khi sinh khó) có thể làm tổn thương đám rối
+n_ax|Thần kinh nách|Nervus axillaris|nb|C5–C6, nhánh của đám rối cánh tay, vòng quanh cổ phẫu thuật xương cánh tay|Cơ delta và cơ tròn bé|Da vùng vai ngoài|Có thể tổn thương khi gãy cổ phẫu thuật xương cánh tay hoặc trật khớp vai, gây teo cơ delta
+n_mc|Thần kinh cơ bì|Nervus musculocutaneus|nb|C5–C7, nhánh của đám rối cánh tay, đi xuyên cơ quạ cánh tay|Các cơ gấp ở cánh tay: nhị đầu, cánh tay, quạ cánh tay|Da mặt ngoài cẳng tay|
+n_rad|Thần kinh quay|Nervus radialis|nb|C5–T1, đi trong rãnh thần kinh quay ở mặt sau thân xương cánh tay|Cơ tam đầu và các cơ duỗi ở cánh tay, cẳng tay|Da mu tay phía ngón cái và mặt sau cánh tay, cẳng tay|Gãy thân xương cánh tay có thể làm tổn thương, gây bàn tay rủ (không duỗi được cổ tay)
+n_med|Thần kinh giữa|Nervus medianus|nb|C5–T1, đi giữa cánh tay và cẳng tay rồi qua ống cổ tay|Hầu hết cơ gấp cẳng tay (trừ cơ gấp cổ tay trụ và nửa trụ cơ gấp chung sâu), hầu hết cơ mô cái và hai cơ giun ngoài|Lòng bàn tay phía ngón cái, ngón trỏ, ngón giữa và nửa ngoài ngón nhẫn|Bị chèn ép trong ống cổ tay gây hội chứng ống cổ tay
+n_uln|Thần kinh trụ|Nervus ulnaris|nb|C8–T1, đi sau lồi cầu trong xương cánh tay rồi xuống bàn tay|Cơ gấp cổ tay trụ, nửa trụ cơ gấp chung sâu và hầu hết các cơ nhỏ ở bàn tay|Ngón út và nửa trong ngón nhẫn|Bị chèn ép ở rãnh sau lồi cầu trong (chỗ tê điện khi va khuỷu), gây tê ngón út và yếu bàn tay
+n_fem|Thần kinh đùi|Nervus femoralis|nb|L2–L4, đi dưới dây chằng bẹn vào mặt trước đùi|Cơ tứ đầu đùi và cơ may|Da mặt trước đùi; nhánh hiển cho mặt trong cẳng chân|Tổn thương làm yếu duỗi gối, đi hay khuỵu gối
+n_obt|Thần kinh bịt|Nervus obturatorius|nb|L2–L4, đi qua ống bịt xuống đùi|Nhóm cơ khép đùi (trừ phần gân kheo của cơ khép lớn do thần kinh tọa chi phối)|Da mặt trong đùi|
+n_isc|Thần kinh tọa|Nervus ischiadicus|nb|L4–S3, ra khỏi chậu qua lỗ ngồi lớn, đi xuống mặt sau đùi|Nhóm cơ gân kheo và phần gân kheo của cơ khép lớn; ở hố khoeo chia thành thần kinh chày và thần kinh mác chung|Qua các nhánh con|Dây thần kinh lớn nhất và dài nhất cơ thể; bị chèn ép gây đau thần kinh tọa lan xuống chân
+n_tib|Thần kinh chày|Nervus tibialis|nb|L4–S3, nhánh của thần kinh tọa, đi ở mặt sau cẳng chân|Nhóm cơ cẳng chân sau (trong đó có cơ bụng chân) và các cơ gan bàn chân|Da gan bàn chân và mặt sau cẳng chân|Tổn thương gây yếu gập gan chân, khó nhón gót
+n_fib|Thần kinh mác chung|Nervus fibularis communis|nb|L4–S2, nhánh của thần kinh tọa, vòng quanh cổ xương mác|Chia thành thần kinh mác nông (cơ mác dài, mác ngắn) và mác sâu (cơ chày trước, các cơ duỗi ngón chân)|Da mặt ngoài cẳng chân và mu chân|Dễ tổn thương ở cổ xương mác (bó bột, chấn thương), gây rơi bàn chân
+n_ic|Thần kinh gian sườn|Nervi intercostales|nb|Nhánh trước của T1–T11, chạy dọc bờ dưới mỗi xương sườn|Các cơ gian sườn và cơ thành ngực – bụng|Da thành ngực và bụng|Zona thần kinh thường gây đau thành dải dọc theo một khoảng gian sườn
+n_ph|Thần kinh hoành|Nervus phrenicus|nb|C3–C5, đi từ cổ xuống ngực qua trung thất|Cơ hoành, cơ hô hấp chính|Màng phổi trung thất, màng ngoài tim và phúc mạc phủ mặt cơ hoành|Tổn thương một bên gây liệt nửa cơ hoành`.trim().split('\n').forEach(l=>{const p=l.split('|');ND[p[0]]={n:p[1],l:p[2],r:p[3],g:p[4],v:p[5],c:p[6],x:p[7]}});
 
 // ---------- cảnh 3D ----------
 const box=document.getElementById('view');
@@ -279,51 +301,99 @@ S.forEach(([sd,s])=>{
  f('m_ta','Cơ chày trước',[s*.2,-1.25,.045],[s*.18,-1.85,.03],.028,.025);
 });
 
+// ---------- thần kinh ----------
+function NV(id,k,lab,sd,pts,r,nohit,hex){M[id]={k,lab,sd,nv:1};
+ const c=new THREE.CatmullRomCurve3(pts.map(p=>new THREE.Vector3(...p)));
+ const m=mesh(new THREE.TubeGeometry(c,Math.max(8,pts.length*6),r,6,false),id);m.userData.nv=1;m.material.color.setHex(hex||0xe6b422);m.material.roughness=.4;
+ if(!nohit){const h=mesh(new THREE.TubeGeometry(c,Math.max(8,pts.length*4),Math.max(r*2.5,.03),5,false),id);h.userData.nv=1;h.userData.hit=1;h.material.opacity=0;h.material.depthWrite=false}}
+function NB(id,k,lab,sd,x,y,z,sx,sy,sz,hex){const m=B(id,k,lab,sd,sph(1),x,y,z,{s:[sx,sy,sz]});M[id].nv=1;m.userData.nv=1;m.material.color.setHex(hex);return m}
+[-1,1].forEach(g=>NB('n_cb'+g,'n_cb','Đại não','',g*.1,1.83,0,.13,.23,.27,0xe3a8a8).userData.id='n_cb');
+// gộp hai bán cầu vào cùng một id
+['n_cb-1','n_cb1'].forEach(r=>{const m=byId[r][0];delete byId[r];delete M[r];(byId.n_cb=byId.n_cb||[]).push(m)});
+M.n_cb={k:'n_cb',lab:'Đại não',sd:'',nv:1};
+NB('n_cbl','n_cbl','Tiểu não','',0,1.64,-.17,.15,.07,.1,0xd49090);
+NV('n_bs','n_bs','Thân não','',[[0,1.72,-.03],[0,1.55,-.08]],.035,true,0xcf9a9a);
+const yv=i=>i<7?1.45-i*.045:i<19?1.09-(i-7)*.07:.2-(i-19)*.08;
+NV('n_sc','n_sc','Tủy sống','',[0,3,6,9,12,15,18,19].map(i=>[0,i==0?1.5:yv(i),zs(i)-.065]),.018,false,0xf1e3a0);
+[-.012,0,.012].forEach(dx=>NV('n_ce','n_ce','Đuôi ngựa','',[[dx,.2,-.265],[dx*2,-.1,-.255],[dx*3,-.35,-.25]],.007,dx!==0,0xf1e3a0));
+const SC=[.3,.36,.4,.43,.45,.46,.46,.44,.42,.39,.32,.26];
+S.forEach(([sd,s])=>{
+ const n=(k,lab,pts,r)=>NV(k+sd,k,lab,sd,pts.map(p=>[s*p[0],p[1],p[2]]),r);
+ n('n_bp','Đám rối cánh tay',[[.03,1.3,-.12],[.15,1.28,-.05],[.3,1.22,0],[.44,1.14,0]],.013);
+ n('n_ax','Thần kinh nách',[[.44,1.14,-.01],[.5,1.08,-.06],[.58,1,-.03]],.01);
+ n('n_mc','Thần kinh cơ bì',[[.45,1.12,.02],[.47,.95,.045],[.5,.75,.05],[.55,.58,.04],[.58,.45,.04]],.009);
+ n('n_rad','Thần kinh quay',[[.45,1.12,-.02],[.48,.98,-.05],[.52,.85,-.045],[.55,.7,0],[.58,.56,.03],[.58,.35,.03],[.58,.1,0],[.58,-.05,-.01]],.011);
+ n('n_med','Thần kinh giữa',[[.45,1.12,.01],[.47,.95,.01],[.48,.75,.02],[.5,.58,.03],[.52,.35,.03],[.53,.1,.03],[.53,-.05,.04],[.54,-.2,.04]],.01);
+ n('n_uln','Thần kinh trụ',[[.45,1.12,0],[.46,.95,-.01],[.47,.75,-.03],[.46,.57,-.05],[.48,.4,-.01],[.5,.15,0],[.51,-.05,.02],[.5,-.2,.03]],.01);
+ n('n_ph','Thần kinh hoành',[[.06,1.32,-.02],[.1,1.1,.04],[.13,.8,.05],[.14,.55,.02]],.01);
+ n('n_fem','Thần kinh đùi',[[.06,.1,-.12],[.12,-.1,-.05],[.22,-.2,.1],[.22,-.5,.09],[.2,-.9,.08],[.17,-1.18,.06],[.16,-1.5,.03]],.012);
+ n('n_obt','Thần kinh bịt',[[.06,.05,-.1],[.1,-.15,0],[.12,-.3,.04],[.14,-.55,.03]],.009);
+ n('n_isc','Thần kinh tọa',[[.04,-.2,-.2],[.15,-.22,-.15],[.17,-.35,-.06],[.2,-.7,-.055],[.2,-1.05,-.05]],.014);
+ n('n_tib','Thần kinh chày',[[.2,-1.1,-.05],[.19,-1.3,-.045],[.18,-1.6,-.04],[.17,-1.9,-.03],[.17,-2.02,0]],.011);
+ n('n_fib','Thần kinh mác chung',[[.2,-1.1,-.05],[.25,-1.18,-.03],[.25,-1.25,0],[.24,-1.4,.03],[.22,-1.7,.04],[.2,-1.95,.05]],.01);
+ for(let i=0;i<11;i++){const sc=SC[i],a=i<7?.92:.7,y0=1.2-i*.07-.03,pts=[],st=(a*Math.PI-.45)/5;
+  for(let k=0;k<6;k++){const al=.3+k*st-Math.PI/2;pts.push([s*sc*.85*Math.cos(al),y0-sc*.9*.12*Math.sin(al),.044+sc*.64*Math.sin(al)])}
+  NV('n_ic'+sd,'n_ic','Thần kinh gian sườn',sd,pts,.007)}
+});
+
 // ---------- tương tác ----------
 const info=document.getElementById('info'),res=document.getElementById('res'),q=document.getElementById('q');
-let sel=null,hov=null,dim=true,auto=true,mode='b';
+let sel=null,hov=null,dim=true,auto=false;const L={b:true,m:false,n:false};
 const keyIds=k=>Object.keys(M).filter(i=>M[i].k===k);
-function paint(){meshes.forEach(m=>{const id=m.userData.id,on=!sel||sel.has(id),base=m.userData.mu&&mode=='bm'?.5:1;
+function paint(){meshes.forEach(m=>{if(m.userData.hit){m.material.opacity=0;return}
+ const id=m.userData.id,on=!sel||sel.has(id),base=m.userData.mu&&L.m&&(L.b||L.n)?.5:1;
  m.material.opacity=on||!dim?base:.2*base;m.material.emissive.setHex(sel&&sel.has(id)?0x9a3412:id===hov?0x3b2410:0)})}
-function vis(){meshes.forEach(m=>{m.visible=(m.userData.mu?mode!='b':mode!='m')&&!m.userData.hid})}
-function setMode(v){mode=v;document.querySelectorAll('#layers button').forEach(b=>b.classList.toggle('on',b.dataset.m===v));vis();paint()}
+function vis(){meshes.forEach(m=>{const u=m.userData;m.visible=(u.mu?L.m:u.nv?L.n:L.b)&&!u.hid})}
+function lay(v,on){L[v]=on;document.querySelectorAll('#layers button').forEach(b=>b.classList.toggle('on',!!L[b.dataset.m]));vis();paint()}
 function show(ids,id){
- const m=M[ids[0]],k=m.k,mu=!!m.mu,d=mu?MU[k]:I[k];sel=new Set(ids);paint();
+ const m=M[ids[0]],k=m.k,ty=m.mu?'m':m.nv?'n':'b',d=ty=='m'?MU[k]:ty=='n'?ND[k]:I[k];sel=new Set(ids);paint();
  const multi=ids.length>1&&!id;info.innerHTML='';
  const add=(tag,cls,txt)=>{const e=document.createElement(tag);e.className=cls;e.textContent=txt;info.appendChild(e)};
  add('h2','',multi?d.n:(m.lab||d.n));add('p','la',d.l);
  const t=document.createElement('div');
- [mu?'Cơ':'Xương',(mu?RGM:RG)[d.r],multi?ids.length+' phần trong mô hình':m.sd?'Bên '+m.sd.toLowerCase():''].forEach(x=>{if(x){const sp=document.createElement('span');sp.className='tag';sp.textContent=x;t.appendChild(sp)}});
+ [{b:'Xương',m:'Cơ',n:'Thần kinh'}[ty],({b:RG,m:RGM,n:RGN}[ty])[d.r],multi?ids.length+' phần trong mô hình':m.sd?'Bên '+m.sd.toLowerCase():''].forEach(x=>{if(x){const sp=document.createElement('span');sp.className='tag';sp.textContent=x;t.appendChild(sp)}});
  info.appendChild(t);
- (mu?[['Nguyên ủy',d.o],['Bám tận',d.i],['Chức năng',d.f],['Thần kinh chi phối',d.v]]:[['Chức năng',d.f]]).forEach(a=>{add('h3','',a[0]);add('p','',a[1])});
+ (ty=='m'?[['Nguyên ủy',d.o],['Bám tận',d.i],['Chức năng',d.f],['Thần kinh chi phối',d.v]]:ty=='n'?[['Vị trí / nguồn gốc',d.g],['Chức năng / chi phối vận động',d.v],['Chi phối cảm giác',d.c],['Lưu ý lâm sàng',d.x]]:[['Chức năng',d.f]]).filter(a=>a[1]).forEach(a=>{add('h3','',a[0]);add('p','',a[1])});
  if(!multi&&m.lab!==d.n)add('p','hint','Nhóm: '+d.n)}
 function clear(){sel=null;paint();info.innerHTML='<p class="hint">Bấm vào một xương trên mô hình, hoặc tìm theo tên ở trên.</p>'}
 q.oninput=()=>{res.innerHTML='';const t=q.value.trim().toLowerCase();if(!t)return;
- Object.keys(I).concat(Object.keys(MU)).filter(k=>{const d=I[k]||MU[k];return(d.n+' '+d.l).toLowerCase().includes(t)}).slice(0,8).forEach(k=>{
-  const b=document.createElement('button');b.textContent=(MU[k]?'Cơ: ':'')+(I[k]||MU[k]).n;
-  b.onclick=()=>{if(MU[k]&&mode=='b')setMode('bm');if(I[k]&&mode=='m')setMode('bm');show(keyIds(k))};res.appendChild(b)})};
+ Object.keys(I).concat(Object.keys(MU),Object.keys(ND)).filter(k=>{const d=I[k]||MU[k]||ND[k];return(d.n+' '+d.l).toLowerCase().includes(t)}).slice(0,8).forEach(k=>{
+  const ty=MU[k]?'m':ND[k]?'n':'b',b=document.createElement('button');b.textContent=({b:'',m:'Cơ: ',n:'Thần kinh: '}[ty])+(I[k]||MU[k]||ND[k]).n;
+  b.onclick=()=>{if(!L[ty])lay(ty,true);show(keyIds(k))};res.appendChild(b)})};
 const regs=document.getElementById('regs');
 Object.keys(RG).forEach(r=>{const b=document.createElement('button');b.textContent=RG[r];b.className='on';
  b.onclick=()=>{const on=b.classList.toggle('on');meshes.forEach(m=>{const d=I[M[m.userData.id].k];if(d&&d.r===r)m.userData.hid=!on});vis()};regs.appendChild(b)});
 const tg=(id,fn)=>{const b=document.getElementById(id);b.onclick=()=>fn(b.classList.toggle('on'))};
-document.querySelectorAll('#layers button').forEach(b=>b.onclick=()=>setMode(b.dataset.m));
+document.querySelectorAll('#layers button').forEach(b=>b.onclick=()=>lay(b.dataset.m,!L[b.dataset.m]));
+document.querySelectorAll('#views button').forEach(b=>b.onclick=()=>root.rotation.set(0,+b.dataset.v,0));
 tg('dim',v=>{dim=v;paint()});tg('spin',v=>auto=v);
-const zoom=d=>cam.position.z=Math.max(2.5,Math.min(11,cam.position.z+d));
+const zoom=d=>{cam.position.z=Math.max(2.2,Math.min(11,cam.position.z+d));clampPan()};
 zi.onclick=()=>zoom(-.8);zo.onclick=()=>zoom(.8);
-rs.onclick=()=>{root.rotation.set(0,0,0);cam.position.z=7.4;clear()};
+rs.onclick=()=>{root.rotation.set(0,0,0);root.position.set(0,0,0);cam.position.z=7.4;clear()};
 
-const el=ren.domElement,ray=new THREE.Raycaster(),mp=new THREE.Vector2();let drag=false,moved=0,lx=0,ly=0;
+const el=ren.domElement,ray=new THREE.Raycaster(),mp=new THREE.Vector2(),P=new Map();let drag=false,moved=0,pd=0;
 function hit(e){const r=el.getBoundingClientRect();mp.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);ray.setFromCamera(mp,cam);
  const h=ray.intersectObjects(meshes.filter(m=>m.visible))[0];return h?h.object.userData.id:null}
-el.addEventListener('pointerdown',e=>{drag=true;moved=0;lx=e.clientX;ly=e.clientY;el.setPointerCapture(e.pointerId)});
+const mpp=()=>.728*cam.position.z/el.clientHeight;
+function clampPan(){const my=Math.max(0,2.3-.364*cam.position.z),mx=Math.max(0,.9-.364*cam.position.z*cam.aspect);
+ root.position.y=Math.max(-my,Math.min(my,root.position.y));root.position.x=Math.max(-mx,Math.min(mx,root.position.x))}
+el.addEventListener('pointerdown',e=>{P.set(e.pointerId,[e.clientX,e.clientY]);drag=true;moved=0;pd=0;el.setPointerCapture(e.pointerId)});
 el.addEventListener('pointermove',e=>{
- if(!drag){const h=hit(e);if(h!==hov){hov=h;el.style.cursor=h?'pointer':'grab';paint()}return}
- const dx=e.clientX-lx,dy=e.clientY-ly;moved+=Math.abs(dx)+Math.abs(dy);
- root.rotation.y+=dx*.01;root.rotation.x=Math.max(-.7,Math.min(.7,root.rotation.x+dy*.005));lx=e.clientX;ly=e.clientY});
-el.addEventListener('pointerup',e=>{drag=false;if(moved<6){const id=hit(e);if(id)show(byId[id]?[id]:[id],id);else clear()}});
+ if(!P.has(e.pointerId)){const h=hit(e);if(h!==hov){hov=h;el.style.cursor=h?'pointer':'grab';paint()}return}
+ const pv=P.get(e.pointerId),dx=e.clientX-pv[0],dy=e.clientY-pv[1];P.set(e.pointerId,[e.clientX,e.clientY]);
+ if(P.size>=2){const v=[...P.values()],d=Math.hypot(v[0][0]-v[1][0],v[0][1]-v[1][1]);if(pd)zoom((pd-d)*.012);pd=d;
+  root.position.x+=dx*mpp()/2;root.position.y-=dy*mpp()/2;moved+=99;clampPan();return}
+ moved+=Math.abs(dx)+Math.abs(dy);
+ if(e.buttons&2||e.shiftKey){root.position.x+=dx*mpp();root.position.y-=dy*mpp()}
+ else{root.rotation.y+=dx*.01;root.position.y-=dy*mpp()}
+ clampPan()});
+el.addEventListener('pointerup',e=>{P.delete(e.pointerId);if(P.size<2)pd=0;
+ if(P.size===0){drag=false;if(moved<6){const id=hit(e);if(id)show([id],id);else clear()}}});
+el.addEventListener('pointercancel',e=>{P.delete(e.pointerId);pd=0;drag=false});
+el.addEventListener('contextmenu',e=>e.preventDefault());
 el.addEventListener('wheel',e=>{e.preventDefault();zoom(e.deltaY*.006)},{passive:false});
 function size(){const w=box.clientWidth,h=box.clientHeight;ren.setSize(w,h);cam.aspect=w/h;cam.updateProjectionMatrix()}
-addEventListener('resize',size);size();setMode('b');clear();
+addEventListener('resize',size);size();lay('b',true);clear();
 (function loop(){requestAnimationFrame(loop);if(auto&&!drag)root.rotation.y+=.004;ren.render(scene,cam)})();
 </script>
 </body>
