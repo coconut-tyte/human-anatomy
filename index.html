@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Bộ xương, hệ cơ và hệ thần kinh người 3D</title>
+<title>Da, xương, cơ và thần kinh người 3D</title>
 <style>
 :root{--bg:#f6f4ef;--card:#fff;--tx:#23201b;--mu:#6b655a;--bd:#e0dbcf;--ac:#c2410c;--acbg:#ffedd5;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17150f;--card:#221f17;--tx:#f1ede2;--mu:#a39c8a;--bd:#3a3528;--ac:#fb923c;--acbg:#3b2410}}
@@ -16,7 +16,7 @@ h1{margin:0;font-size:1.5rem}header p{margin:4px 0 0;color:var(--mu);font-size:.
 main{display:grid;gap:14px;grid-template-columns:1fr;padding-bottom:40px}
 @media(min-width:880px){main{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}}
 .card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px}
-#view{position:relative;height:min(78vh,640px);padding:0;overflow:hidden;touch-action:none}
+#view{position:relative;height:min(78vh,640px);padding:0;overflow:hidden;touch-action:none;background:radial-gradient(ellipse at 50% 35%,#4d5260 0%,#2a2e38 65%,#1b1d23 100%);border-color:#1b1d23}#view button{background:rgba(255,255,255,.92);color:#23201b;border-color:rgba(0,0,0,.25)}#view button.on{background:#ffedd5;color:#c2410c;border-color:#c2410c}
 #view canvas{display:block;width:100%;height:100%;cursor:grab}
 #tools{position:absolute;right:8px;top:8px;display:flex;flex-direction:column;gap:6px}
 #tools button{width:36px;height:36px;padding:0;font-size:1rem}
@@ -34,12 +34,12 @@ a{color:var(--ac)}
 </head>
 <body>
 <header>
-<h1>🦴 Xương, cơ và thần kinh người 3D</h1>
-<p>Kéo để xoay, cuộn hoặc bấm +/− để phóng to. Bật hoặc tắt các lớp Xương / Cơ / Thần kinh ở góc trái mô hình, rồi bấm vào từng phần để xem thông tin. Mô hình chỉ xoay khi bạn kéo thả. Khi đã phóng to, kéo lên xuống để xem phần trên và dưới; giữ Shift hoặc dùng chuột phải để kéo theo mọi hướng; trên điện thoại dùng hai ngón để phóng to và di chuyển. Nút Trước / Sau / Trái / Phải để đổi nhanh hướng nhìn.</p>
+<h1>🦴 Da, xương, cơ và thần kinh người 3D</h1>
+<p>Kéo để xoay, cuộn hoặc bấm +/− để phóng to. Bật hoặc tắt các lớp Da / Xương / Cơ / Thần kinh ở góc trái mô hình, rồi bấm vào từng phần để xem thông tin. Mô hình chỉ xoay khi bạn kéo thả. Khi đã phóng to, kéo lên xuống để xem phần trên và dưới; giữ Shift hoặc dùng chuột phải để kéo theo mọi hướng; trên điện thoại dùng hai ngón để phóng to và di chuyển. Nút Trước / Sau / Trái / Phải để đổi nhanh hướng nhìn.</p>
 </header>
 <main>
 <div class="card" id="view">
-<div id="layers"><button data-m="b" class="on">Xương</button><button data-m="m">Cơ</button><button data-m="n">Thần kinh</button></div>
+<div id="layers"><button data-m="s">Da</button><button data-m="b" class="on">Xương</button><button data-m="m">Cơ</button><button data-m="n">Thần kinh</button></div>
 <div id="views"><button data-v="0">Trước</button><button data-v="3.1416">Sau</button><button data-v="-1.5708">Trái</button><button data-v="1.5708">Phải</button></div>
 <div id="tools"><button id="zi" title="Phóng to">+</button><button id="zo" title="Thu nhỏ">−</button><button id="rs" title="Đặt lại">⟲</button></div>
 </div>
@@ -50,7 +50,7 @@ a{color:var(--ac)}
 <h3>Hiển thị theo vùng xương</h3>
 <div class="bar" id="regs"></div>
 <div class="bar"><button id="dim" class="on">Làm mờ xương khác khi chọn</button><button id="spin">Tự xoay</button></div>
-<p class="hint">Mô hình xương và cơ dựng bằng hình khối nên chỉ gần đúng về hình dạng. Phần cơ gồm 23 nhóm cơ nông chính, chưa có các cơ sâu. Có thể bật nhiều lớp cùng lúc; lớp nằm phía trước sẽ che lớp phía sau khi bấm, nên muốn chọn xương hoặc dây thần kinh nằm sâu thì tắt bớt lớp cơ. Não và tủy sống nằm trong hộp sọ và ống sống nên chỉ thấy khi tắt lớp Xương. Phần thần kinh gồm 5 cấu trúc thần kinh trung ương và 13 dây thần kinh ngoại biên chính, chưa có dây thần kinh sọ và hệ thần kinh tự chủ. Chưa có 14 xương nhỏ nằm sâu: xương sàng, lệ, khẩu cái, cuốn mũi dưới, lá mía và 6 xương nhĩ (còn lại 192/206 xương). Để xem hình dạng thật, tham khảo
+<p class="hint">Mô hình xương và cơ dựng bằng hình khối nên chỉ gần đúng về hình dạng. Phần cơ gồm 23 nhóm cơ nông chính, chưa có các cơ sâu. Có thể bật nhiều lớp cùng lúc; lớp nằm phía trước sẽ che lớp phía sau khi bấm, nên muốn chọn xương hoặc dây thần kinh nằm sâu thì tắt bớt lớp cơ. Não và tủy sống nằm trong hộp sọ và ống sống nên chỉ thấy khi tắt lớp Xương. Phần thần kinh gồm 5 cấu trúc thần kinh trung ương và 13 dây thần kinh ngoại biên chính, chưa có dây thần kinh sọ và hệ thần kinh tự chủ. Lớp Da là bề mặt cơ thể dựng bằng khối đơn giản; khi bật cùng các lớp khác, da trở nên trong suốt và chỉ chọn được ở chỗ không có xương, cơ hay dây thần kinh phía sau. Chưa có 14 xương nhỏ nằm sâu: xương sàng, lệ, khẩu cái, cuốn mũi dưới, lá mía và 6 xương nhĩ (còn lại 192/206 xương). Để xem hình dạng thật, tham khảo
 <a href="https://learnanatomy3d.com/" target="_blank" rel="noopener">LearnAnatomy3D</a> hoặc
 <a href="https://anatomytool.org/node/63858" target="_blank" rel="noopener">Open 3D Model</a>.</p>
 </div>
@@ -145,7 +145,7 @@ m_add|Nhóm cơ khép đùi|Musculi adductores|ml|Xương mu và ngành xương 
 m_ham|Nhóm cơ gân kheo|Musculi ischiocrurales (hamstrings)|ml|Củ ngồi (đầu ngắn cơ nhị đầu đùi bám đường ráp)|Chỏm xương mác (cơ nhị đầu đùi); mặt trong xương chày (cơ bán gân, cơ bán màng)|Duỗi khớp háng, gập gối|Thần kinh tọa
 m_gas|Cơ bụng chân|Musculus gastrocnemius|ml|Hai lồi cầu xương đùi (mặt sau)|Xương gót, qua gân gót (Achilles)|Gập gan chân (nhón gót) và gập gối|Thần kinh chày (S1–S2)
 m_ta|Cơ chày trước|Musculus tibialis anterior|ml|Lồi cầu ngoài và mặt ngoài xương chày|Xương chêm trong và nền xương đốt bàn I|Gập mu bàn chân và nâng bờ trong bàn chân; liệt gây rơi bàn chân|Thần kinh mác sâu (L4–L5)`.trim().split('\n').forEach(l=>{const p=l.split('|');MU[p[0]]={n:p[1],l:p[2],r:p[3],o:p[4],i:p[5],f:p[6],v:p[7]}});
-const RGN={tw:'Thần kinh trung ương',nb:'Thần kinh ngoại biên'};
+const RGN={tw:'Thần kinh trung ương',nb:'Thần kinh ngoại biên',da:'Hệ da'};
 // khóa|tên|Latin|loại|vị trí / nguồn gốc|chức năng / vận động|cảm giác|lưu ý lâm sàng
 const ND={};`
 n_cb|Đại não|Cerebrum|tw|Trong hộp sọ, chiếm phần lớn thể tích não; gồm hai bán cầu, mỗi bán cầu có 4 thùy: trán, đỉnh, thái dương, chẩm|Xử lý cảm giác, điều khiển vận động có ý thức, ngôn ngữ, trí nhớ, tư duy và cảm xúc||
@@ -165,7 +165,9 @@ n_isc|Thần kinh tọa|Nervus ischiadicus|nb|L4–S3, ra khỏi chậu qua lỗ
 n_tib|Thần kinh chày|Nervus tibialis|nb|L4–S3, nhánh của thần kinh tọa, đi ở mặt sau cẳng chân|Nhóm cơ cẳng chân sau (trong đó có cơ bụng chân) và các cơ gan bàn chân|Da gan bàn chân và mặt sau cẳng chân|Tổn thương gây yếu gập gan chân, khó nhón gót
 n_fib|Thần kinh mác chung|Nervus fibularis communis|nb|L4–S2, nhánh của thần kinh tọa, vòng quanh cổ xương mác|Chia thành thần kinh mác nông (cơ mác dài, mác ngắn) và mác sâu (cơ chày trước, các cơ duỗi ngón chân)|Da mặt ngoài cẳng chân và mu chân|Dễ tổn thương ở cổ xương mác (bó bột, chấn thương), gây rơi bàn chân
 n_ic|Thần kinh gian sườn|Nervi intercostales|nb|Nhánh trước của T1–T11, chạy dọc bờ dưới mỗi xương sườn|Các cơ gian sườn và cơ thành ngực – bụng|Da thành ngực và bụng|Zona thần kinh thường gây đau thành dải dọc theo một khoảng gian sườn
-n_ph|Thần kinh hoành|Nervus phrenicus|nb|C3–C5, đi từ cổ xuống ngực qua trung thất|Cơ hoành, cơ hô hấp chính|Màng phổi trung thất, màng ngoài tim và phúc mạc phủ mặt cơ hoành|Tổn thương một bên gây liệt nửa cơ hoành`.trim().split('\n').forEach(l=>{const p=l.split('|');ND[p[0]]={n:p[1],l:p[2],r:p[3],g:p[4],v:p[5],c:p[6],x:p[7]}});
+n_ph|Thần kinh hoành|Nervus phrenicus|nb|C3–C5, đi từ cổ xuống ngực qua trung thất|Cơ hoành, cơ hô hấp chính|Màng phổi trung thất, màng ngoài tim và phúc mạc phủ mặt cơ hoành|Tổn thương một bên gây liệt nửa cơ hoành
+sk|Da|Cutis|da|Ba lớp từ nông vào sâu: biểu bì (biểu mô lát tầng sừng hóa, không có mạch máu), trung bì (mô liên kết chứa mạch máu, thần kinh, nang lông, tuyến mồ hôi và tuyến bã) và hạ bì (mô dưới da, chứa nhiều mỡ)|Hàng rào bảo vệ trước vi sinh vật, tia cực tím và mất nước; điều hòa thân nhiệt (tiết mồ hôi, co giãn mạch); tiếp nhận cảm giác (xúc giác, nhiệt, đau); tổng hợp vitamin D dưới tác dụng của tia UVB|Là cơ quan lớn nhất cơ thể, diện tích khoảng 1,5–2 m² ở người trưởng thành; độ dày thay đổi theo vùng, mỏng nhất ở mí mắt|Bỏng độ I chỉ tổn thương biểu bì, độ II lan tới trung bì, độ III tổn thương toàn bộ chiều dày da
+sk_h|Da lòng bàn tay và gan bàn chân|Cutis palmaris et plantaris|da|Biểu bì rất dày với lớp sừng dày; không có nang lông và tuyến bã; có rất nhiều tuyến mồ hôi|Chịu ma sát và áp lực khi cầm nắm, đi đứng; tiếp nhận xúc giác tinh nhờ nhiều tiểu thể cảm giác; vân da giúp tăng độ bám|Là vùng da có biểu bì dày nhất cơ thể; vân da (dấu vân tay) hình thành từ thời bào thai và mỗi người mỗi khác|Môi trường ẩm kéo dài ở kẽ chân dễ gây nấm da`.trim().split('\n').forEach(l=>{const p=l.split('|');ND[p[0]]={n:p[1],l:p[2],r:p[3],g:p[4],v:p[5],c:p[6],x:p[7]}});
 
 // ---------- cảnh 3D ----------
 const box=document.getElementById('view');
@@ -336,29 +338,50 @@ S.forEach(([sd,s])=>{
   NV('n_ic'+sd,'n_ic','Thần kinh gian sườn',sd,pts,.007)}
 });
 
+// ---------- da ----------
+function skin(m){m.userData.sk=1;m.material.color.setHex(0xe3b08c);m.material.roughness=.8;return m}
+function SE(id,k,lab,sd,x,y,z,sx,sy,sz){M[id]={k,lab,sd,sk:1};const m=mesh(new THREE.SphereGeometry(1,28,18),id);m.position.set(x,y,z);m.scale.set(sx,sy,sz);skin(m)}
+function CP(id,k,lab,sd,a,b,r){M[id]={k,lab,sd,sk:1};const A=new THREE.Vector3(...a),Q=new THREE.Vector3(...b),d=Q.clone().sub(A),L2=d.length();
+ const c=mesh(new THREE.CylinderGeometry(r,r,L2,20),id);c.position.copy(A).add(Q).multiplyScalar(.5);c.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),d.normalize());skin(c);
+ [a,b].forEach(p=>{const e=mesh(new THREE.SphereGeometry(r,20,14),id);e.position.set(...p);skin(e)})}
+SE('skHd','sk','Da vùng đầu và cổ','',0,1.79,.02,.31,.36,.34);
+SE('skHd','sk','Da vùng đầu và cổ','',0,1.36,-.05,.12,.19,.14);
+SE('skT','sk','Da vùng thân','',0,.85,0,.5,.56,.39);
+SE('skT','sk','Da vùng thân','',0,.3,0,.42,.3,.33);
+SE('skT','sk','Da vùng thân','',0,-.08,0,.43,.5,.34);
+SE('skT','sk','Da vùng thân','',0,1.25,-.02,.5,.16,.3);
+S.forEach(([sd,s])=>{
+ CP('skA'+sd,'sk','Da chi trên',sd,[s*.53,1.2,0],[s*.52,.56,0],.115);
+ CP('skA'+sd,'sk','Da chi trên',sd,[s*.54,.55,0],[s*.54,-.05,0],.085);
+ SE('skH'+sd,'sk_h','Da bàn tay',sd,s*.55,-.33,0,.09,.29,.045);
+ CP('skL'+sd,'sk','Da chi dưới',sd,[s*.24,-.2,0],[s*.2,-1.15,0],.17);
+ CP('skL'+sd,'sk','Da chi dưới',sd,[s*.19,-1.15,-.01],[s*.19,-1.97,0],.11);
+ SE('skF'+sd,'sk_h','Da bàn chân',sd,s*.19,-2,.13,.095,.08,.3);
+});
+
 // ---------- tương tác ----------
 const info=document.getElementById('info'),res=document.getElementById('res'),q=document.getElementById('q');
-let sel=null,hov=null,dim=true,auto=false;const L={b:true,m:false,n:false};
+let sel=null,hov=null,dim=true,auto=false;const L={b:true,m:false,n:false,s:false};
 const keyIds=k=>Object.keys(M).filter(i=>M[i].k===k);
 function paint(){meshes.forEach(m=>{if(m.userData.hit){m.material.opacity=0;return}
- const id=m.userData.id,on=!sel||sel.has(id),base=m.userData.mu&&L.m&&(L.b||L.n)?.5:1;
+ const id=m.userData.id,on=!sel||sel.has(id),base=m.userData.mu&&L.m&&(L.b||L.n)?.5:m.userData.sk&&(L.b||L.m||L.n)?.2:1;
  m.material.opacity=on||!dim?base:.2*base;m.material.emissive.setHex(sel&&sel.has(id)?0x9a3412:id===hov?0x3b2410:0)})}
-function vis(){meshes.forEach(m=>{const u=m.userData;m.visible=(u.mu?L.m:u.nv?L.n:L.b)&&!u.hid})}
+function vis(){meshes.forEach(m=>{const u=m.userData;m.visible=(u.mu?L.m:u.nv?L.n:u.sk?L.s:L.b)&&!u.hid})}
 function lay(v,on){L[v]=on;document.querySelectorAll('#layers button').forEach(b=>b.classList.toggle('on',!!L[b.dataset.m]));vis();paint()}
 function show(ids,id){
- const m=M[ids[0]],k=m.k,ty=m.mu?'m':m.nv?'n':'b',d=ty=='m'?MU[k]:ty=='n'?ND[k]:I[k];sel=new Set(ids);paint();
+ const m=M[ids[0]],k=m.k,ty=m.mu?'m':m.nv?'n':m.sk?'s':'b',d=ty=='m'?MU[k]:(ty=='n'||ty=='s')?ND[k]:I[k];sel=new Set(ids);paint();
  const multi=ids.length>1&&!id;info.innerHTML='';
  const add=(tag,cls,txt)=>{const e=document.createElement(tag);e.className=cls;e.textContent=txt;info.appendChild(e)};
  add('h2','',multi?d.n:(m.lab||d.n));add('p','la',d.l);
  const t=document.createElement('div');
- [{b:'Xương',m:'Cơ',n:'Thần kinh'}[ty],({b:RG,m:RGM,n:RGN}[ty])[d.r],multi?ids.length+' phần trong mô hình':m.sd?'Bên '+m.sd.toLowerCase():''].forEach(x=>{if(x){const sp=document.createElement('span');sp.className='tag';sp.textContent=x;t.appendChild(sp)}});
+ [{b:'Xương',m:'Cơ',n:'Thần kinh',s:'Da'}[ty],({b:RG,m:RGM,n:RGN,s:RGN}[ty])[d.r],multi?ids.length+' phần trong mô hình':m.sd?'Bên '+m.sd.toLowerCase():''].forEach(x=>{if(x){const sp=document.createElement('span');sp.className='tag';sp.textContent=x;t.appendChild(sp)}});
  info.appendChild(t);
- (ty=='m'?[['Nguyên ủy',d.o],['Bám tận',d.i],['Chức năng',d.f],['Thần kinh chi phối',d.v]]:ty=='n'?[['Vị trí / nguồn gốc',d.g],['Chức năng / chi phối vận động',d.v],['Chi phối cảm giác',d.c],['Lưu ý lâm sàng',d.x]]:[['Chức năng',d.f]]).filter(a=>a[1]).forEach(a=>{add('h3','',a[0]);add('p','',a[1])});
+ (ty=='m'?[['Nguyên ủy',d.o],['Bám tận',d.i],['Chức năng',d.f],['Thần kinh chi phối',d.v]]:ty=='s'?[['Cấu tạo',d.g],['Chức năng',d.v],['Đặc điểm',d.c],['Lưu ý lâm sàng',d.x]]:ty=='n'?[['Vị trí / nguồn gốc',d.g],['Chức năng / chi phối vận động',d.v],['Chi phối cảm giác',d.c],['Lưu ý lâm sàng',d.x]]:[['Chức năng',d.f]]).filter(a=>a[1]).forEach(a=>{add('h3','',a[0]);add('p','',a[1])});
  if(!multi&&m.lab!==d.n)add('p','hint','Nhóm: '+d.n)}
 function clear(){sel=null;paint();info.innerHTML='<p class="hint">Bấm vào một xương trên mô hình, hoặc tìm theo tên ở trên.</p>'}
 q.oninput=()=>{res.innerHTML='';const t=q.value.trim().toLowerCase();if(!t)return;
  Object.keys(I).concat(Object.keys(MU),Object.keys(ND)).filter(k=>{const d=I[k]||MU[k]||ND[k];return(d.n+' '+d.l).toLowerCase().includes(t)}).slice(0,8).forEach(k=>{
-  const ty=MU[k]?'m':ND[k]?'n':'b',b=document.createElement('button');b.textContent=({b:'',m:'Cơ: ',n:'Thần kinh: '}[ty])+(I[k]||MU[k]||ND[k]).n;
+  const ty=MU[k]?'m':ND[k]?(ND[k].r=='da'?'s':'n'):'b',b=document.createElement('button');b.textContent=({b:'',m:'Cơ: ',n:'Thần kinh: ',s:'Da: '}[ty])+(I[k]||MU[k]||ND[k]).n;
   b.onclick=()=>{if(!L[ty])lay(ty,true);show(keyIds(k))};res.appendChild(b)})};
 const regs=document.getElementById('regs');
 Object.keys(RG).forEach(r=>{const b=document.createElement('button');b.textContent=RG[r];b.className='on';
@@ -373,7 +396,7 @@ rs.onclick=()=>{root.rotation.set(0,0,0);root.position.set(0,0,0);cam.position.z
 
 const el=ren.domElement,ray=new THREE.Raycaster(),mp=new THREE.Vector2(),P=new Map();let drag=false,moved=0,pd=0;
 function hit(e){const r=el.getBoundingClientRect();mp.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);ray.setFromCamera(mp,cam);
- const h=ray.intersectObjects(meshes.filter(m=>m.visible))[0];return h?h.object.userData.id:null}
+ const vm=meshes.filter(m=>m.visible),h=ray.intersectObjects(vm.filter(m=>!m.userData.sk))[0]||ray.intersectObjects(vm.filter(m=>m.userData.sk))[0];return h?h.object.userData.id:null}
 const mpp=()=>.728*cam.position.z/el.clientHeight;
 function clampPan(){const my=Math.max(0,2.3-.364*cam.position.z),mx=Math.max(0,.9-.364*cam.position.z*cam.aspect);
  root.position.y=Math.max(-my,Math.min(my,root.position.y));root.position.x=Math.max(-mx,Math.min(mx,root.position.x))}
